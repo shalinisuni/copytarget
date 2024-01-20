@@ -1,17 +1,17 @@
-import pyodbc
+# import pyodbc
 from flask import Flask, render_template,request,session,flash
 from . import app
 
 
 # Database connection configuration
-server = 'solutionkraft.database.windows.net'
-database = 'demosqlpro'
-username = 'solutionkraft'
-password = '{Solnkraft24}'
-driver = '{ODBC Driver 18 for SQL Server}'
-conn_str = f'DRIVER={driver};SERVER=tcp:{server},1433;DATABASE={database};UID={username};PWD={password}'
-conn=pyodbc.connect(conn_str)
-cursor=conn.cursor()
+# server = 'solutionkraft.database.windows.net'
+# database = 'demosqlpro'
+# username = 'solutionkraft'
+# password = '{Solnkraft24}'
+# driver = '{ODBC Driver 18 for SQL Server}'
+# conn_str = f'DRIVER={driver};SERVER=tcp:{server},1433;DATABASE={database};UID={username};PWD={password}'
+# conn=pyodbc.connect(conn_str)
+# cursor=conn.cursor()
 app.config['SECRET_KEY'] = 'demoapp'
 
 
@@ -21,7 +21,8 @@ def index():
         email = request.form['email']
         password = request.form['password']
         print(email,password)
-        user_id = get_user_id(email, password)
+        user_id=1
+        # user_id = get_user_id(email, password)
         print(user_id)
         if user_id is not None:
             session['user_id'] = user_id
@@ -34,10 +35,10 @@ def index():
 
        
         
-def get_user_id(email, password):
-    cursor.execute("SELECT user_id FROM users WHERE email = ? AND password = ?",(email,password))
-    user = cursor.fetchone()
-    print(type(user))
+# def get_user_id(email, password):
+#     cursor.execute("SELECT user_id FROM users WHERE email = ? AND password = ?",(email,password))
+#     user = cursor.fetchone()
+#     print(type(user))
             
     return user[0] if user else None
         
